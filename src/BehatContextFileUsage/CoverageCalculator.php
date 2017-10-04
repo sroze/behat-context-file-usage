@@ -1,9 +1,9 @@
 <?php
 namespace BehatContextFileUsage;
 
-use Behat\Testwork\EventDispatcher\Event\AfterExerciseCompleted;
 use Behat\Testwork\EventDispatcher\Event\AfterSuiteTested as AfterSuiteTestedEvent;
 use Behat\Testwork\EventDispatcher\Event\BeforeSuiteTested as BeforeSuiteTestedEvent;
+use Behat\Testwork\EventDispatcher\Event\ExerciseCompleted;
 use Behat\Testwork\EventDispatcher\TestworkEventDispatcher as EventDispatcher;
 
 class CoverageCalculator
@@ -47,11 +47,11 @@ class CoverageCalculator
     /**
      * @throws \InvalidArgumentException
      *
-     * @param AfterExerciseCompleted $event
-     * @param string                 $eventName
-     * @param EventDispatcher        $eventDispatcher
+     * @param ExerciseCompleted $event
+     * @param string            $eventName
+     * @param EventDispatcher   $eventDispatcher
      */
-    public function beNotifiedOfExerciseFinishedEvent(AfterExerciseCompleted $event, $eventName, EventDispatcher $eventDispatcher)
+    public function beNotifiedOfExerciseFinishedEvent(ExerciseCompleted $event, $eventName, EventDispatcher $eventDispatcher)
     {
         $this->phpUnitCodeCoverageTool->stopRecordingCodeUsage();
         $this->phpUnitCodeCoverageTool->publishCodeUsageReport();
